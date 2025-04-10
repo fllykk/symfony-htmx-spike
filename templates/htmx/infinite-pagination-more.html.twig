@@ -1,0 +1,27 @@
+
+{%  if pages.items | length > 0 %}
+    {% for page in pages.items %}
+        <tr style="border: aquamarine; border-width: 1px; border-style: solid;">
+            <td>{{ page.title }} lol </td>
+            <td>{{ page.content }}</td>
+        </tr>
+    {% endfor %}
+
+    <tr id="replaceMe">
+        <td colspan="2">
+            <button class='btn primary'
+                    hx-get="{{ path('htmx_infinite_pagination', {'page': pages.page+1, 'limit':20 }) }}"
+                    hx-target="#replaceMe"
+                    hx-swap="outerHTML">
+                Load More... <img class="htmx-indicator" src="/img/bars.svg">
+            </button>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="2">No more pages</td>
+    </tr>
+{% endif %}
+
+
+

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HtmxController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+<div class="example-wrapper">
+    <h1>HTMX Inline Edit</h1>
+
+    <table border="1" style="border: 1px solid #ccc; width: 100%; border-collapse: collapse;">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for page in pages.items %}
+            <tr>
+                <td>{{ page.title | u.truncate(50) }}</td>
+                <td>{{ page.content | u.truncate(100)  }}</td>
+            </tr>
+
+        {% endfor %}
+        <tr id="replaceMe">
+            <td colspan="2">
+                <button class='btn primary' hx-get={{ path('htmx_infinite_pagination', {'page': pages.page+1, 'limit':20 }) }}
+                        hx-target="#replaceMe"
+                        hx-swap="outerHTML">
+                    Load More... <img class="htmx-indicator" src="/img/bars.svg">
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}

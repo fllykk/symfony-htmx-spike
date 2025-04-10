@@ -1,0 +1,23 @@
+<section id="pages-section">
+    {% for page in pages.items %}
+        <article>
+            <div class="title">{{ page.title }}</div>
+            <div class="content">{{ page.content }}</div>
+        </article>
+    {% endfor %}
+    {#<div class="pagination">
+
+        {% if pages.currentPage != 1 %}
+            <a href="{{ path('pages_list', { "page": 1 }) }}"> << </a>
+            <a href="{{ path('pages_list', { "page": pages.currentPage-1 }) }}"> < </a>
+        {% endif %}
+        <span>{{ pages.currentPage }}/{{ pages.totalPages }}</span>
+        {% if pages.currentPage != pages.totalPages  %}
+            <a href="{{ path('pages_list', { "page": pages.currentPage+1 }) }}"> > </a>
+            <a href="{{ path('pages_list', { "page": pages.totalPages }) }}"> >> </a>
+        {% endif %}
+        #}{#<label for="limit">Items per page:</label><input type="text" name="limit" value="{{ limit }}" onfocusout="location.href='{{ path('pages_list') }}?page={{ pages.currentPage }}&limit=' + this.value" />#}{#
+    </div>#}
+    <hr>
+    {% include 'widgets/pagination-links.html.twig' with { "links": links } only %}
+</section>

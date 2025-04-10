@@ -1,0 +1,16 @@
+<div class="pagination">
+    {% for link in links %}
+        {% if link.href is empty %}
+            {{ link.label | raw }}
+        {% else %}
+            <a hx-get="{{ link.href }}" class="{{ link.class }}"
+               hx-target="#pages-section"
+               hx-swap="outerHTML"
+               hx-replace-url="true"
+            >
+                {{ link.label | raw }} {% if loop.first %} Previous {% endif %} {% if loop.last %} Next {% endif %}
+            </a>
+        {% endif%}
+    {% endfor %}
+</div>
+

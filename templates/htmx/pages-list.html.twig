@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HtmxController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .title{font-size: 2rem; font-weight: bold;}
+        .content{margin: 0 0.5rem 1rem 0.5rem; border-bottom: #999999 solid 1px;}
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a, .pagination span {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
+
+<div class="example-wrapper">
+    <h1>HTMX pages list with pagination</h1>
+
+
+        {% include 'htmx/pages-list-content.html.twig' with { "pages": pages, "links": links } only %}
+
+</div>
+{% endblock %}
